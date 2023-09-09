@@ -87,7 +87,7 @@ jobs:
           # cat naabu.txt | gau --subs --blacklist png,jpg,gif,css --o gl.txt
           # cat naabu.txt | waybackurls > way_urls.txt | tee -a gl.txt
 
-          cat passive_subdomains.txt | gau --subs --blacklist png,jpg,gif,css,js | tee g_w.txt  
+          cat passive_subdomains.txt | gau --subs --blacklist png,jpg,gif,css,js --threads 370 --timeout 10 --o g_w.txt  
           cat passive_subdomains.txt | waybackurls > w_w.txt | tee -a g_w.txt 
           #cat passive_subdomains.txt | waybackurls > way_urls.txt | tee -a g_w.txt   
           
