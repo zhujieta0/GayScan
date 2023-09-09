@@ -45,7 +45,7 @@ jobs:
 
       - name: Running SubFinder for passive DNS enumeration
         run: |
-          rm -rf *_*.txt
+          sudo rm -rf *_*.txt
           subfinder -dL domains.txt -config config/subfinder-config.yaml -o active_subdomains.txt
         shell: bash
 
