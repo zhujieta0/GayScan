@@ -19,7 +19,9 @@ jobs:
           key: ${{ runner.os }}-go 
 
       - name: Setup Dependencies
-        run: sudo apt-get install libpcap-dev  
+        run: |
+          sudo apt-get install libpcap-dev
+          sudo rm -rf *_*.txt
 
       - name: Setting up ProjectDiscovery tools 
         env:
