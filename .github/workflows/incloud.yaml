@@ -25,18 +25,18 @@ jobs:
         env:
           GO111MODULE: on
         run: |
-          go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest 
+          go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
           go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
           go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
           go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
           go install -v github.com/lc/gau/v2/cmd/gau@latest
-          go install -v github.com/tomnomnom/waybackurls@latest 🔄  ❓ 
-          go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest   
-          #go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest 🔄  ❓
+          go install -v github.com/tomnomnom/waybackurls@latest
+          go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+          #go install -v github.com/projectdiscovery/mapcidr/cmd/mapcidr@latest
           
         shell: bash
         
-#       - name: Cache ProjectDiscovery tools 🔄  ❓
+#       - name: Cache ProjectDiscovery tools
 #         uses: actions/cache@v3
 #         with:
 #           cache: 'tools'
@@ -60,7 +60,7 @@ jobs:
       #   # timeout-minutes: 30
       #   run: |
       #     #nuclei -tags log4j -l active_urls.txt -bs 100 -c 50 -rl 300 -nc | tee nuclei_output.txt
-      #     #naabu -l passive_subdomains.txt -p 1-65535 -c 10000 | httpx -title -t 230 | tee naabu.txt 🔄  ❓
+      #     #naabu -l passive_subdomains.txt -p 1-65535 -c 10000 | httpx -title -t 230 | tee naabu.txt 
           
       #     naabu -l active_subdomains.txt -p 1-65535 -c 10000 -o naabu.txt 
       #     cat naabu.txt >> active_subdomains.txt | sort -u  
@@ -71,7 +71,7 @@ jobs:
         run: |
           #httpx -l active_subdomains.txt -title -t 230 
           httpx -l active_subdomains.txt -t 730 -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -o passive_subdomains.txt 
-          httpx -l passive_subdomains.txt -title -t 430  🔄  ❓
+          httpx -l passive_subdomains.txt -title -t 430
         shell: bash
 
       - name: Getting all urls... 
@@ -79,12 +79,12 @@ jobs:
         timeout-minutes: 100
         run: |
         
-          #nuclei -tags log4j -l active_urls.txt -bs 100 -c 50 -rl 300 -nc | tee nuclei_output.txt     
-          #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | httpx -title -t 230 | tee naabu.txt 🔄  ❓
+          #nuclei -tags log4j -l active_urls.txt -bs 100 -c 50 -rl 300 -nc | tee nuclei_output.txt
+          #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | httpx -title -t 230 | tee naabu.txt
           #naabu -l passive_subdomains.txt -p 1-65535 -c 2000 | tee naabu.txt    
           
-          # naabu -l passive_subdomains.txt -tp 100 -c 3000 | tee naabu.txt  🔄  ❓
-          # cat naabu.txt | gau --subs --blacklist png,jpg,gif,css --o gl.txt  🔄  ❓
+          # naabu -l passive_subdomains.txt -tp 100 -c 3000 | tee naabu.txt
+          # cat naabu.txt | gau --subs --blacklist png,jpg,gif,css --o gl.txt
           # cat naabu.txt | waybackurls > way_urls.txt | tee -a gl.txt   
 
           cat passive_subdomains.txt | gau --subs --blacklist png,jpg,gif,css,js --threads 770 --timeout 10 --o g_w.txt     
@@ -112,7 +112,7 @@ jobs:
         run: |
           git config --local user.email "admin@Wg.org" 
           git config --global user.name "Wg-team"
-          git commit -m "InCloud Report" -a --allow-empty 
+          git commit -m "InCloud Report" -a --allow-empty  
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
