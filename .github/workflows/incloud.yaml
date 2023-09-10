@@ -69,7 +69,8 @@ jobs:
           
 
 
-      - name: Running httpx for HTTP webservers probbing 
+      - name: Running httpx for HTTP webservers probbing
+        continue-on-error: true
         run: |
           #httpx -l active_subdomains.txt -title -t 230 
           httpx -l active_subdomains.txt -t 730 -mc 100,101,200,201,204,301,302,304,400,403,404,500,502,503 -o passive_subdomains.txt 
